@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class MainGraphicsFrame {
 
 	private double screenWidth, screenHeight; 
-	private JTextPane Question;
+	private JTextPane questionTextPane;
 	private JTextField tableNameField, answerField;
 	private JButton libraryButton, bQueryButton, finalButton, newTableButton;
 	private JLabel selectLabel;
@@ -58,23 +58,20 @@ public class MainGraphicsFrame {
 	 * For Database, GameFlow and mainFrame
 	 */
 	public void initGraphicalUserInterface() {
-
-		//----Main Panel-----
 		initMainFrame();
 		initDatabaseUserInterface();
 
+        vocsMenuFrame = new VocsMenuFrame(this);
+        vocsMenuFrame.startVocsMenuFrame();
 
-		initButtonLabel();
-		initTextFields();
-		initComboBox();
-		actionListeners();
-		vocsMenuFrame = new VocsMenuFrame(this);
-		vocsMenuFrame.startVocsMenuFrame();
+        initButtonLabel();
+        initTextFields();
+        initComboBox();
+        actionListeners();
 
-		//TODO - Only one call
-		initPositions();
-		initPositions();
-	}
+        initPositions();
+		mainFrame.setVisible(true);
+    }
 
 	private void initDatabaseUserInterface() {
 		questionList = database.getQuestionList("Regular");
@@ -113,8 +110,6 @@ public class MainGraphicsFrame {
 		mainPanel.setBackground(Color.white);
 		mainFrame.add(mainPanel);
 		mainPanel.setLayout(null);
-
-		mainFrame.setVisible(true);
 	}
 
 	/**
@@ -151,25 +146,24 @@ public class MainGraphicsFrame {
 		Dimension textSize = new Dimension(TextWidth, TextHeight);
 
 
-		Question = new JTextPane();
-		Question.setPreferredSize(textSize);
-		Question.setEnabled(false);
-		Question.setDisabledTextColor(java.awt.Color.BLACK);
-		//Question.setHorizontalAlignment(JTextField.CENTER);
-		Question.setBackground(java.awt.Color.lightGray);
+		questionTextPane = new JTextPane();
+		questionTextPane.setPreferredSize(textSize);
+		questionTextPane.setEnabled(false);
+		questionTextPane.setDisabledTextColor(java.awt.Color.BLACK);
+
+		questionTextPane.setBackground(java.awt.Color.lightGray);
 		simpleAttributeSet = new SimpleAttributeSet();
 		StyleConstants.setAlignment(simpleAttributeSet, StyleConstants.ALIGN_CENTER);
 		StyleConstants.setFontSize(simpleAttributeSet, 30);
 		StyleConstants.setFontFamily(simpleAttributeSet, "Serif");
-		Question.setParagraphAttributes(simpleAttributeSet,true);
-		
-	
+		questionTextPane.setParagraphAttributes(simpleAttributeSet,true);
+
 		if(questionList.size()>0) {
 			displayQuestion();
-		}
-		
-		
-	   
+		}else {
+            questionTextPane.setText("This list is empty, or all vocs are higher than level five!");
+        }
+
 		answerField = new JTextField();
 		answerField.setPreferredSize(textSize);
 		answerField.setHorizontalAlignment(JTextField.CENTER);
@@ -219,7 +213,7 @@ public class MainGraphicsFrame {
 		jComboBox.setBounds(corFactorWidth(800), corFactorHeight(25), corFactorWidth(150), corFactorHeight(50));
 		selectLabel.setBounds(corFactorWidth(650), corFactorHeight(25), corFactorWidth(150), corFactorHeight(50));
 		
-		 Question.setBounds(corFactorWidth(50), corFactorHeight(100), corFactorWidth(900), corFactorHeight(350));
+		questionTextPane.setBounds(corFactorWidth(50), corFactorHeight(100), corFactorWidth(900), corFactorHeight(350));
 		answerField.setBounds(corFactorWidth(50), corFactorHeight(500), corFactorWidth(900), corFactorHeight(350));
 		
 		finalButton.setBounds(corFactorWidth(800), corFactorHeight(875), corFactorWidth(150), corFactorHeight(50));
@@ -235,9 +229,7 @@ public class MainGraphicsFrame {
 		int fontSizeField = (int) fFontField;
 		
 		answerField.setFont(new Font("Arial", Font.ITALIC, fontSizeField));
-		
-		
-		
+
 		float fffFontButton = (float) (5.14*Math.pow(10, -6));
 		float ffFontButton = fffFontButton*x;
 		float fFontButton = (float) (ffFontButton+11.73);
@@ -257,14 +249,13 @@ public class MainGraphicsFrame {
 		mainPanel.add(jComboBox);
 		mainPanel.add(selectLabel);
 		
-		mainPanel.add(Question);
+		mainPanel.add(questionTextPane);
 		mainPanel.add(answerField);
 		
 		mainPanel.add(finalButton);
 		
 		mainPanel.add(newTableButton);
 		mainPanel.add(tableNameField);
-		
 	}
 
 	/**
@@ -272,9 +263,9 @@ public class MainGraphicsFrame {
 	 */
 	private void actionListeners() {
 
+
 		mainFrame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
-				
 				initPositions();
 			}
 		});
@@ -284,7 +275,7 @@ public class MainGraphicsFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Question.setEnabled(false);
+				questionTextPane.setEnabled(false);
 				finalButton.setText("Check");
 				gameFlow.setInput(false);
 				tableNameField.setEditable(false);
@@ -378,7 +369,7 @@ public class MainGraphicsFrame {
 	 */
 	public void displayQuestion() {
 
-		Question.setText("Question: " + questionList.get(randomNumber));
+		questionTextPane.setText("Question: " + questionList.get(randomNumber));
 
 	}
 
@@ -426,7 +417,7 @@ public class MainGraphicsFrame {
 			newTableButton.setText("Cur. Level:"+ levelList.get(randomNumber));
 		}else {
 			newTableButton.setText("Cur. Level: ?");
-			Question.setText("This list is empty, or all vocs are higher than level five!");
+			questionTextPane.setText("This list is empty, or all vocs are higher than level five!");
 		}
 	}
 
