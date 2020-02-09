@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * 
  * @author Alexander Beiser
- * @version 0.21
+ * @version 0.22
  * 
  * For the ,,library'' window
  * Here the user can add new vocs, delete vocs and edit vocs.

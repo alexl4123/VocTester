@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VocTester:jar">
+    <output-path>$PROJECT_DIR$/vocabulary-tester/bin/artifacts/VocTester_jar</output-path>
+    <root id="archive" name="VocTester.jar">
+      <element id="module-output" name="VocTester" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/vocabulary-tester/code/sqlite-jdbc-3.21.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

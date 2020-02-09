@@ -1,7 +1,7 @@
 /**
  * 
  * @author Alexander Beiser
- * @version 0.21
+ * @version 0.22
  * 
  * Here is the main methode
  *

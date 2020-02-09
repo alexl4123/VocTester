@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * 
  * @author Alexander Beiser
- * @version 0.21
+ * @version 0.22
  * 
  * Here the question window is asked
  *

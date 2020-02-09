@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 /**
  * 
  * @author Alexander Beiser
- * @version 0.21
+ * @version 0.22
  * 
  * Here the database access happens
  *
