@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * 
  * @author Alexander Beiser
@@ -15,12 +13,13 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Started");
-		GameFlow GF = new GameFlow();
-		GF.init();
+		GameFlow gameflow = new GameFlow();
+		gameflow.init();
+		Database database = new Database();
+		database.createTableIfNotExists();
 		
-		Graphics graphs = new Graphics(GF);
-		
+		MainGraphicsFrame mainGraphicsFrame = new MainGraphicsFrame(gameflow, database);
+		mainGraphicsFrame.initGraphicalUserInterface();
 	}
 
 }

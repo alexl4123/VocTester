@@ -4,8 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * 
  * @author Alexander Beiser
  * @version 0.21
- * 
- * Here, the random number is calculated
+ *
  *
  */
 public class GameFlow {
@@ -40,7 +39,7 @@ public class GameFlow {
 	 * @param maxNum
 	 * @return
 	 */
-	public int randNumSelect(int maxNum) {
+	public int getRandomNumber(int maxNum) {
 		
 		int randomNum = ThreadLocalRandom.current().nextInt(0, maxNum+1);
 		
